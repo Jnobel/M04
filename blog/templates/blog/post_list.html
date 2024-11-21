@@ -4,48 +4,13 @@
     <title>My Blog</title>
 </head>
 <body>
-    <div>
-        <h1>My Blog</h1>
-        {% for post in posts %}
-            <div>
-                <h2>{{ post.title }}</h2>
-                <p>{{ post.text }}</p>
-                <p><small>Published: {{ post.published_date }}</small></p>
-            </div>
-        {% endfor %}
-    </div>
-    <div class="post">
-        <h2 class="title">The Journey of Creating My First Blog</h2>
-        <p class="date">November 21, 2024</p>
-        <p>
-            Creating my first blog has been an exciting and challenging journey. From setting up a local environment
-            with Django to deploying the blog online with PythonAnywhere, every step was a learning experience. Using
-            GitHub for version control and VS Code for coding streamlined the process, making development smoother.
-            Although there were hurdles, like resolving errors and configuration issues, the satisfaction of seeing the
-            blog live made it all worth it.
-        </p>
-    </div>
-    <div class="post">
-        <h2 class="title">Learning Django</h2>
-        <p class="date">November 21, 2024</p>
-        <p>
-            Django is an amazing framework for building web applications. Its simplicity and powerful features make it
-            an excellent choice for both beginners and experienced developers. I loved how it simplifies tasks like
-            database migrations, creating admin panels, and routing. Working through the Django Girls tutorial was a
-            great starting point. Though debugging issues like `TemplateDoesNotExist` and deployment errors were tricky,
-            they helped deepen my understanding of the framework.
-        </p>
-    </div>
-    <div class="post">
-        <h2 class="title">Using PythonAnywhere and VS Code</h2>
-        <p class="date">November 21, 2024</p>
-        <p>
-            PythonAnywhere and VS Code were essential tools in my blogging journey. PythonAnywhere made it easy to host
-            my Django app online with minimal setup. Their virtual environments and web app configuration tools were
-            straightforward to use. On the other hand, VS Code provided a versatile and user-friendly coding environment.
-            Features like extensions, debugging tools, and Git integration made coding and managing my project seamless.
-            These tools made the development process much more efficient and enjoyable.
-        </p>
-    </div>
+    <h1>My Blog</h1>
+    {% for post in posts %}
+        <div>
+            <h2>{{ post.title }}</h2>
+            <p>{{ post.text }}</p>
+            <p><small>Published: {{ post.published_date }}</small></p>
+        </div>
+    {% endfor %}
 </body>
 </html>
