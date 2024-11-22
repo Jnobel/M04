@@ -18,6 +18,6 @@ from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', include('blog.urls')),  # Includes the URLs from the blog app
+    path('admin/', admin.site.urls),  # This includes the Django admin site
+    path('', include('blog.urls')),  # This includes your blog app's URLs
 ]
