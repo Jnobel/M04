@@ -1,0 +1,90 @@
+/* Styling the page header */
+.page-header {
+    background-color: #C25100;
+    margin-top: 0;
+    margin-bottom: 40px;
+    padding: 20px 20px 20px 40px;
+}
+
+/* Styling the header text */
+.page-header h1,
+.page-header h1 a,
+.page-header h1 a:visited,
+.page-header h1 a:active {
+    color: #ffffff;
+    font-size: 36pt;
+    text-decoration: none;
+}
+
+/* General font styling */
+h1,
+h2,
+h3,
+h4 {
+    font-family: 'Lobster', cursive;
+}
+
+/* Styling for post titles */
+h1 a, h2 a {
+    color: #C25100;
+    font-family: 'Lobster';
+}
+
+/* Add hover effects to links */
+h1 a:hover, h2 a:hover {
+    color: #FF5733; /* Bright orange color */
+    text-decoration: underline;
+}
+
+/* Add padding to the body */
+body {
+    padding-left: 15px;
+}
+
+/* Post content styling */
+.post {
+    margin-bottom: 70px;
+}
+
+.post h2 a,
+.post h2 a:visited {
+    color: #000000;
+}
+
+/* Date styling */
+.date {
+    color: #828282;
+    font-size: 12px; /* Adjusted for better readability */
+    margin-right: 10px;
+    float: right;
+}
+
+/* Button styling */
+button {
+    background-color: #C25100;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #FF5733;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    body {
+        padding-left: 5px;
+    }
+
+    .page-header h1 {
+        font-size: 24pt;
+    }
+
+    .post {
+        margin-bottom: 40px;
+    }
+}
