@@ -1,11 +1,17 @@
 {% extends 'blog/base.html' %}
+{% load static %}
 
 {% block content %}
     <article class="post">
         {% if post.published_date %}
-            <time class="date">
+            <div class="date">
                 {{ post.published_date }}
-            </time>
+            </div>
+        {% else %}
+            <form method="POST" action="{% url 'post_publish' pk=post.pk %}" class="post-form">
+                {% csrf_token %}
+                <button type="submit" class="post btn btn-secondary" name="publish">Publish</button>
+            </form>
         {% endif %}
         <h2>{{ post.title }}</h2>
         <p>{{ post.text|linebreaksbr }}</p>
@@ -15,8 +21,51 @@
     {% if user.is_authenticated %}
         <aside class="actions">
             <a class="btn btn-secondary" href="{% url 'post_edit' pk=post.pk %}">
-                {% include './icons/pencil-fill.svg' %}
+                <img src="{% static 'blog/icons/pencil-fill.svg' %}" alt="Edit Icon" />
             </a>
         </aside>
+
+        <!-- Delete button -->
+        <form method="POST" action="{% url 'post_remove' pk=post.pk %}" class="post-form">
+            {% csrf_token %}
+            <button type="submit" class="post btn btn-danger" name="delete">
+                Delete
+            </button>
+        </form>
+    {% endif %}
+
+    <hr>
+    {% for comment in post.comments.all %}
+        {% if user.is_authenticated or comment.approved_comment %}
+        <div class="comment">
+            <div class="date">
+                {{ comment.created_date }}
+                {% if user.is_authenticated and not comment.approved_comment %}
+                    <a class="btn btn-default" href="{% url 'comment_remove' pk=comment.pk %}">
+                        <img src="{% static 'blog/icons/hand-thumbs-down.svg' %}" alt="Disapprove" />
+                    </a>
+                    <a class="btn btn-default" href="{% url 'comment_approve' pk=comment.pk %}">
+                        <img src="{% static 'blog/icons/hand-thumbs-up.svg' %}" alt="Approve" />
+                    </a>
+                {% endif %}
+            </div>
+            <strong>{{ comment.author }}</strong>
+            <p>{{ comment.text|linebreaks }}</p>
+        </div>
+        {% endif %}
+    {% empty %}
+        <p>No comments here yet :(</p>
+    {% endfor %}
+
+    <hr>
+    <h3>Add a Comment:</h3>
+    {% if user.is_authenticated %}
+        <form method="POST" action="{% url 'add_comment_to_post' pk=post.pk %}">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-success">Add Comment</button>
+        </form>
+    {% else %}
+        <p><a href="{% url 'login' %}">Log in</a> to add a comment.</p>
     {% endif %}
 {% endblock %}
